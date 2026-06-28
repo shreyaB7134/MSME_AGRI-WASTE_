@@ -1158,7 +1158,7 @@ class _IntakeScanScreenState extends State<IntakeScanScreen>
                 child: Container(
                   height: 280,
                   decoration: BoxDecoration(
-                    color: Colors.black86,
+                    color: Colors.black87,
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: Stack(
