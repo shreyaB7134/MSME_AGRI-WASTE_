@@ -1,8 +1,10 @@
 // ============================================================
-// AGRICYCLE — Complete Agri-Tech Mobile Application Platform
+// AGRICYCLE — Digital Platform for Converting Agricultural Waste
+// into Rural Micro-enterprises (MSME Innovation Initiative)
 // Architecture: Single-file Material 3 Flutter implementation.
-// Features: Real hardware camera integration, AI edge analysis simulation,
-// B2B Marketplace, Role-based Dashboards, and Financial Ledgers.
+// Mentors: Sireesha Chittepu (Vasavi College of Engineering)
+// Team: Shreya Burra, Sudugu Akshitha Reddy, Sanjana Dharanikota,
+//       Amrutha Varshini, Shiva Sai, Sareddy Nihal Reddy
 // ============================================================
 
 import 'dart:async';
@@ -30,17 +32,17 @@ Future<void> main() async {
 }
 
 // ─────────────────────────────────────────────────────────────
-// BRAND THEME TOKENS
+// BRAND THEME TOKENS & COLOR PALETTE
 // ─────────────────────────────────────────────────────────────
-const Color _kPrimary     = Color(0xFF1E5128); // Global Forest Green Token
+const Color _kPrimary     = Color(0xFF1E5128); // Forest Green Brand Token
 const Color _kPrimaryLt   = Color(0xFF2E7D3A);
 const Color _kPrimaryDk   = Color(0xFF143D1C);
 const Color _kOnPrimary   = Color(0xFFF4F7F5);
 const Color _kCanvas      = Color(0xFFF4F7F5); // Off-white canvas
 const Color _kSurface     = Color(0xFFFFFFFF);
-const Color _kMuted       = Color(0xFF7A8B7D);
+const Color _kMuted       = Color(0xFF6B7E6F);
 const Color _kTextDark    = Color(0xFF112A16);
-const Color _kBorder      = Color(0x1F1E5128); // Thin transparent borders
+const Color _kBorder      = Color(0x1F1E5128); // Thin transparent border
 const Color _kAmber       = Color(0xFFF9A825);
 const Color _kBlue        = Color(0xFF1565C0);
 const Color _kEmeraldBg   = Color(0xFFE6F4EA);
@@ -54,7 +56,7 @@ class AgriCycleApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'AgriCycle',
+      title: 'Agri Cycle',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
@@ -69,7 +71,7 @@ class AgriCycleApp extends StatelessWidget {
         scaffoldBackgroundColor: _kCanvas,
         cardTheme: CardThemeData(
           color: _kSurface,
-          elevation: 4,
+          elevation: 3,
           shadowColor: _kPrimary.withOpacity(0.08),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
@@ -100,7 +102,7 @@ class AgriCycleApp extends StatelessWidget {
 }
 
 // ─────────────────────────────────────────────────────────────
-// 2. NEW ENTRANCE SYSTEM: SPLASH SCREEN
+// 2. ENTRANCE GATEWAY: SPLASH SCREEN
 // ─────────────────────────────────────────────────────────────
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -160,8 +162,8 @@ class _SplashScreenState extends State<SplashScreen>
                   ScaleTransition(
                     scale: _pulseAnim,
                     child: Container(
-                      width: 100,
-                      height: 100,
+                      width: 104,
+                      height: 104,
                       decoration: BoxDecoration(
                         color: _kOnPrimary.withOpacity(0.12),
                         shape: BoxShape.circle,
@@ -174,12 +176,12 @@ class _SplashScreenState extends State<SplashScreen>
                           )
                         ],
                       ),
-                      child: const Icon(Icons.eco_rounded, size: 54, color: _kOnPrimary),
+                      child: const Icon(Icons.eco_rounded, size: 56, color: _kOnPrimary),
                     ),
                   ),
                   const SizedBox(height: 28),
                   const Text(
-                    'AgriCycle',
+                    'Agri Cycle',
                     style: TextStyle(
                       fontSize: 38,
                       fontWeight: FontWeight.w900,
@@ -187,14 +189,19 @@ class _SplashScreenState extends State<SplashScreen>
                       letterSpacing: 1.5,
                     ),
                   ),
-                  const SizedBox(height: 8),
-                  Text(
-                    'AI-POWERED AGRI-WASTE ECOSYSTEM',
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
-                      color: _kOnPrimary.withOpacity(0.75),
-                      letterSpacing: 1.8,
+                  const SizedBox(height: 10),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 32),
+                    child: Text(
+                      'DIGITAL PLATFORM FOR CONVERTING AGRI-WASTE INTO RURAL MICRO-ENTERPRISES',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w600,
+                        color: _kOnPrimary.withOpacity(0.8),
+                        letterSpacing: 1.2,
+                        height: 1.4,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 48),
@@ -210,16 +217,16 @@ class _SplashScreenState extends State<SplashScreen>
               ),
             ),
             Positioned(
-              bottom: 32,
+              bottom: 28,
               left: 0,
               right: 0,
               child: Text(
-                'Hardware Enabled  •  MSME Platform v2.5',
+                'MSME Innovation Initiative  •  Vasavi College of Engineering',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 11,
                   color: _kOnPrimary.withOpacity(0.5),
-                  letterSpacing: 0.8,
+                  letterSpacing: 0.5,
                 ),
               ),
             ),
@@ -231,7 +238,7 @@ class _SplashScreenState extends State<SplashScreen>
 }
 
 // ─────────────────────────────────────────────────────────────
-// 2. NEW ENTRANCE SYSTEM: LOGIN SCREEN
+// 2. ENTRANCE GATEWAY: LOGIN SCREEN
 // ─────────────────────────────────────────────────────────────
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -244,7 +251,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final _inputCtrl = TextEditingController();
   final _passCtrl = TextEditingController();
-  int _selectedRole = 0; // 0: Farmer Portal, 1: Industrial Buyer Portal
+  int _selectedRole = 0; // 0: Collection Center / Farmer Hub, 1: Industrial Buyer
   bool _isVerifying = false;
 
   @override
@@ -258,8 +265,6 @@ class _LoginScreenState extends State<LoginScreen> {
     if (!_formKey.currentState!.validate()) return;
 
     setState(() => _isVerifying = true);
-
-    // 1-second authentication verification delay
     await Future.delayed(const Duration(seconds: 1));
 
     if (mounted) {
@@ -297,7 +302,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       const SizedBox(height: 16),
                       const Text(
-                        'AgriCycle Portal',
+                        'Agri Cycle Portal',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 26,
@@ -308,9 +313,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       const SizedBox(height: 6),
                       const Text(
-                        'Select your role and authenticate to access ecosystem tools',
+                        'Rural Agri-Waste Valorization & Marketplace Platform',
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 13, color: _kMuted),
+                        style: TextStyle(fontSize: 12, color: _kMuted, fontWeight: FontWeight.w500),
                       ),
                       const SizedBox(height: 32),
 
@@ -326,7 +331,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           children: [
                             Expanded(
                               child: _RoleChip(
-                                title: 'Farmer Portal',
+                                title: 'Farmer / SHG Hub',
                                 icon: Icons.agriculture_rounded,
                                 isSelected: _selectedRole == 0,
                                 onTap: () => setState(() => _selectedRole = 0),
@@ -346,19 +351,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       const SizedBox(height: 24),
 
-                      // Premium Login Card
+                      // Credentials Card
                       Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                          side: const BorderSide(color: _kBorder),
-                        ),
                         child: Padding(
                           padding: const EdgeInsets.all(20),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const Text(
-                                'ACCOUNT CREDENTIALS',
+                                'ACCOUNT AUTHENTICATION',
                                 style: TextStyle(
                                   fontSize: 11,
                                   fontWeight: FontWeight.w800,
@@ -371,8 +372,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 controller: _inputCtrl,
                                 style: const TextStyle(fontSize: 14, color: _kTextDark),
                                 decoration: InputDecoration(
-                                  labelText: 'Phone Number or Email',
-                                  hintText: 'e.g. +91 98765 43210',
+                                  labelText: 'Phone Number / Aadhar / Udyam ID',
+                                  hintText: 'e.g. 9868 6056 7427',
                                   prefixIcon: const Icon(Icons.person_outline_rounded, color: _kPrimary),
                                   filled: true,
                                   fillColor: _kCanvas,
@@ -382,7 +383,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                 ),
                                 validator: (v) =>
-                                    (v == null || v.trim().isEmpty) ? 'Please enter your phone or email' : null,
+                                    (v == null || v.trim().isEmpty) ? 'Please enter your login credential' : null,
                               ),
                               const SizedBox(height: 14),
                               TextFormField(
@@ -457,7 +458,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
 
-          // 1-Second Blur Overlay during Verification
+          // Verification Overlay
           if (_isVerifying)
             Positioned.fill(
               child: BackdropFilter(
@@ -485,7 +486,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             SizedBox(height: 6),
                             Text(
-                              'Establishing secure session with Edge Node',
+                              'Syncing offline ledger with cloud matching engine',
                               style: TextStyle(fontSize: 12, color: _kMuted),
                             ),
                           ],
@@ -534,7 +535,7 @@ class _RoleChip extends StatelessWidget {
             Text(
               title,
               style: TextStyle(
-                fontSize: 13,
+                fontSize: 12,
                 fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
                 color: isSelected ? _kOnPrimary : _kMuted,
               ),
@@ -635,7 +636,7 @@ class _DashboardTabState extends State<DashboardTab> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(_showMarketplace ? 'B2B Marketplace Portal' : 'AgriCycle Dashboard'),
+        title: Text(_showMarketplace ? 'B2B Waste Marketplace' : 'Agri Cycle Dashboard'),
         actions: [
           if (_showMarketplace)
             IconButton(
@@ -690,17 +691,17 @@ class _DashboardMainView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Welcome back, Vasavi SHG Hub!',
+                          'Welcome, Vasavi SHG Collection Hub!',
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 15,
                             fontWeight: FontWeight.w800,
                             color: _kTextDark,
                           ),
                         ),
                         SizedBox(height: 4),
                         Text(
-                          'Telangana Agricultural Node #042',
-                          style: TextStyle(fontSize: 12, color: _kMuted),
+                          'Rural Collection Center #02 • Offline Mode Active',
+                          style: TextStyle(fontSize: 11, color: _kMuted),
                         ),
                       ],
                     ),
@@ -711,9 +712,9 @@ class _DashboardMainView extends StatelessWidget {
           ),
           const SizedBox(height: 20),
 
-          // Micro-grid Metric Statistic Blocks
+          // Ecosystem Metrics & Revenue Tracking
           const Text(
-            'ECOSYSTEM METRICS & REVENUE TRACKING',
+            'WASTE VALORIZATION & REVENUE METRICS',
             style: TextStyle(fontSize: 11, fontWeight: FontWeight.w800, color: _kMuted, letterSpacing: 1.2),
           ),
           const SizedBox(height: 12),
@@ -721,9 +722,9 @@ class _DashboardMainView extends StatelessWidget {
             children: [
               Expanded(
                 child: _MetricCard(
-                  title: 'Total Traded',
+                  title: 'Total Biomass Traded',
                   value: '1,420 Tons',
-                  change: '+14% this month',
+                  change: 'Prevented Stubble Burning',
                   icon: Icons.scale_rounded,
                   color: _kPrimary,
                 ),
@@ -731,9 +732,9 @@ class _DashboardMainView extends StatelessWidget {
               const SizedBox(width: 12),
               Expanded(
                 child: _MetricCard(
-                  title: 'Total Revenue',
+                  title: 'Micro-enterprise Rev.',
                   value: '₹4.82 Lakhs',
-                  change: 'Verified Payouts',
+                  change: 'Direct Farmer Payouts',
                   icon: Icons.account_balance_wallet_rounded,
                   color: _kAmber,
                 ),
@@ -742,7 +743,7 @@ class _DashboardMainView extends StatelessWidget {
           ),
           const SizedBox(height: 16),
 
-          // Revenue Tracking Mini Graph Visualizer
+          // Monthly Tonnage & Revenue Graph Visualizer
           Card(
             child: Padding(
               padding: const EdgeInsets.all(16),
@@ -753,10 +754,10 @@ class _DashboardMainView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Monthly Tonnage & Revenue Graph',
+                        'Biomass Collection & Valuation Trend',
                         style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: _kTextDark),
                       ),
-                      Text('2026 Q2', style: TextStyle(fontSize: 11, color: _kMuted, fontWeight: FontWeight.w600)),
+                      Text('2026 Season', style: TextStyle(fontSize: 11, color: _kMuted, fontWeight: FontWeight.w600)),
                     ],
                   ),
                   const SizedBox(height: 16),
@@ -783,16 +784,16 @@ class _DashboardMainView extends StatelessWidget {
 
           // Gateway Portal Cards
           const Text(
-            'GATEWAY PORTALS',
+            'OPERATIONAL GATEWAY PORTALS',
             style: TextStyle(fontSize: 11, fontWeight: FontWeight.w800, color: _kMuted, letterSpacing: 1.2),
           ),
           const SizedBox(height: 12),
 
           _GatewayCard(
-            title: 'Farmer / SHG Hub Portal',
-            subtitle: 'Log raw crop residue batches & request local logistics pickup',
+            title: 'Collection Center / Farmer Hub',
+            subtitle: 'Catalog raw agri-waste, conduct quality checks & log weighing data',
             icon: Icons.agriculture_rounded,
-            badgeText: 'HUB OPERATIONAL',
+            badgeText: 'HYBRID OFFLINE MODE ACTIVE',
             color: _kPrimary,
             onTap: () {},
           ),
@@ -800,9 +801,9 @@ class _DashboardMainView extends StatelessWidget {
 
           _GatewayCard(
             title: 'Industrial Buyer Gateway',
-            subtitle: 'Access real-time biomass marketplace lots & place bulk supply bids',
+            subtitle: 'Access ML matching engine, view waste listings & place bulk supply bids',
             icon: Icons.factory_rounded,
-            badgeText: 'B2B LIVE MARKET',
+            badgeText: 'B2B MARKETPLACE LIVE',
             color: _kBlue,
             onTap: onOpenMarketplace,
           ),
@@ -926,7 +927,7 @@ class _GatewayCard extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(title, style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700, color: color)),
+                        Text(title, style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700, color: color)),
                         const SizedBox(height: 2),
                         Text(subtitle, style: const TextStyle(fontSize: 11, color: _kMuted, height: 1.3)),
                       ],
@@ -962,10 +963,11 @@ class _B2BMarketplaceView extends StatelessWidget {
   const _B2BMarketplaceView({required this.onBack});
 
   static const _lots = [
-    ('Rice Paddy Straw', 'Warangal Cluster', '1,200 KG', '₹3,800 / Ton', Icons.grass_rounded),
-    ('Sugarcane Bagasse', 'Nalgonda Refinery', '850 KG', '₹5,100 / Ton', Icons.factory_rounded),
-    ('Cotton Stalk Biomass', 'Adilabad Hub', '2,400 KG', '₹4,200 / Ton', Icons.eco_rounded),
-    ('Groundnut Shell Husks', 'Mahbubnagar Node', '600 KG', '₹6,400 / Ton', Icons.grain_rounded),
+    ('Rice Paddy Straw', 'Warangal Collection Center', '1,200 KG', '₹3,800 / Ton', Icons.grass_rounded),
+    ('Sugarcane Bagasse', 'Nalgonda Collection Center', '850 KG', '₹5,100 / Ton', Icons.factory_rounded),
+    ('Cotton Stalk Biomass', 'Adilabad Collection Center', '2,400 KG', '₹4,200 / Ton', Icons.eco_rounded),
+    ('Groundnut Shell Husks', 'Mahbubnagar Hub', '600 KG', '₹6,400 / Ton', Icons.grain_rounded),
+    ('Wheat Stubble', 'Karimnagar Center', '1,500 KG', '₹3,200 / Ton', Icons.landscape_rounded),
   ];
 
   @override
@@ -984,8 +986,8 @@ class _B2BMarketplaceView extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               const Text(
-                'Live Biomass Marketplace',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: _kTextDark),
+                'ML Waste Matching Engine',
+                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800, color: _kTextDark),
               ),
             ],
           ),
@@ -1045,7 +1047,7 @@ class _B2BMarketplaceView extends StatelessWidget {
 }
 
 // ─────────────────────────────────────────────────────────────
-// TAB 2: INTAKE SCAN SCREEN (REAL HARDWARE CAMERA & LASER SCAN)
+// TAB 2: INTAKE SCAN SCREEN (TENSORFLOW LITE & HARDWARE CAMERA)
 // ─────────────────────────────────────────────────────────────
 class IntakeScanScreen extends StatefulWidget {
   const IntakeScanScreen({super.key});
@@ -1068,7 +1070,6 @@ class _IntakeScanScreenState extends State<IntakeScanScreen>
   void initState() {
     super.initState();
 
-    // Setup Laser Scan Animation Controller
     _laserController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 1500),
@@ -1102,7 +1103,6 @@ class _IntakeScanScreenState extends State<IntakeScanScreen>
 
   @override
   void dispose() {
-    // Lifecycle Safe-guard: Always dispose camera controller
     _cameraController?.dispose();
     _laserController.dispose();
     super.dispose();
@@ -1118,7 +1118,6 @@ class _IntakeScanScreenState extends State<IntakeScanScreen>
 
     _laserController.repeat(reverse: true);
 
-    // 2-Second Simulated AI Scan Execution
     Timer(const Duration(seconds: 2), () {
       if (mounted) {
         _laserController.stop();
@@ -1150,7 +1149,7 @@ class _IntakeScanScreenState extends State<IntakeScanScreen>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // Hardware Viewfinder Frame Box
+              // Viewfinder Container Card
               Card(
                 clipBehavior: Clip.antiAlias,
                 child: Container(
@@ -1161,7 +1160,7 @@ class _IntakeScanScreenState extends State<IntakeScanScreen>
                   ),
                   child: Stack(
                     children: [
-                      // Real Hardware Camera Preview feed (or fallback)
+                      // Camera Feed or Fallback Frame
                       if (_isCameraInitialized && _cameraController != null)
                         Center(child: CameraPreview(_cameraController!))
                       else
@@ -1179,14 +1178,14 @@ class _IntakeScanScreenState extends State<IntakeScanScreen>
                           ),
                         ),
 
-                      // Viewfinder Targeting Grid Overlay
+                      // Targeting Box Overlay
                       Center(
                         child: Container(
                           width: 200,
                           height: 200,
                           decoration: BoxDecoration(
                             border: Border.all(
-                              color: _isScanning ? const Color(0xFF43A047) : _kOnPrimary.withOpacity(0.5),
+                              color: _isScanning ? const Color(0xFF00FF66) : _kOnPrimary.withOpacity(0.5),
                               width: 2,
                             ),
                             borderRadius: BorderRadius.circular(12),
@@ -1194,7 +1193,7 @@ class _IntakeScanScreenState extends State<IntakeScanScreen>
                         ),
                       ),
 
-                      // Laser-Line Overlay Scanning Animation
+                      // Laser Scanning Line Overlay
                       if (_isScanning)
                         AnimatedBuilder(
                           animation: _laserAnimation,
@@ -1254,23 +1253,29 @@ class _IntakeScanScreenState extends State<IntakeScanScreen>
               ),
               const SizedBox(height: 24),
 
-              // Trigger AI TFLite Analysis Button
+              // High-Contrast Trigger AI TFLite Analysis Button
               SizedBox(
                 height: 54,
                 child: ElevatedButton.icon(
                   onPressed: _isScanning ? null : _triggerTFLiteAnalysis,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: _kPrimary,
+                    foregroundColor: Colors.white,
+                    elevation: 4,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                  ),
                   icon: _isScanning
-                      ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2, color: _kOnPrimary))
-                      : const Icon(Icons.radar_rounded, color: _kOnPrimary),
+                      ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
+                      : const Icon(Icons.radar_rounded, color: Colors.white),
                   label: Text(
-                    _isScanning ? 'Running Edge Inference...' : 'Trigger AI TFLite Analysis',
-                    style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w700, color: _kOnPrimary),
+                    _isScanning ? 'Running TFLite Inference...' : 'Trigger AI TFLite Analysis',
+                    style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w700, color: Colors.white),
                   ),
                 ),
               ),
               const SizedBox(height: 24),
 
-              // Dynamic Metric Results View with Fade & Slide Transition
+              // Dynamic Metric Results View
               AnimatedSwitcher(
                 duration: const Duration(milliseconds: 500),
                 transitionBuilder: (child, anim) {
@@ -1300,15 +1305,16 @@ class _IntakeScanScreenState extends State<IntakeScanScreen>
                                   Icon(Icons.check_circle_rounded, color: Color(0xFF2E7D32), size: 22),
                                   SizedBox(width: 8),
                                   Text(
-                                    'TFLite Inference Complete',
-                                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w800, color: Color(0xFF1B4D2E)),
+                                    'TensorFlow Lite Inspection Complete',
+                                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w800, color: Color(0xFF1B4D2E)),
                                   ),
                                 ],
                               ),
                               const Divider(height: 24, color: Color(0xFFA5D6A7)),
+                              const _MetricRow(label: 'Material Group', value: 'Rice Paddy Straw'),
                               const _MetricRow(label: 'Estimated Weight', value: '480 KG'),
-                              const _MetricRow(label: 'Material Group', value: 'Paddy Straw Biomass'),
-                              const _MetricRow(label: 'Moisture Content', value: '12.4% (Optimal)'),
+                              const _MetricRow(label: 'Moisture Level', value: '12.4% (Optimal Range)'),
+                              const _MetricRow(label: 'Sync Status', value: 'Offline SQLite Stored'),
                               const SizedBox(height: 12),
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(6),
@@ -1321,7 +1327,7 @@ class _IntakeScanScreenState extends State<IntakeScanScreen>
                               ),
                               const SizedBox(height: 6),
                               const Text(
-                                'AI Confidence Metric: 96%',
+                                'AI Classification Accuracy: 96%',
                                 style: TextStyle(fontSize: 11, fontWeight: FontWeight.w700, color: Color(0xFF2E7D32)),
                               ),
                             ],
@@ -1367,7 +1373,7 @@ class _MetricRow extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(label, style: const TextStyle(fontSize: 13, color: Color(0xFF2E7D32), fontWeight: FontWeight.w600)),
-          Text(value, style: const TextStyle(fontSize: 14, color: Color(0xFF1B4D2E), fontWeight: FontWeight.w800)),
+          Text(value, style: const TextStyle(fontSize: 13, color: Color(0xFF1B4D2E), fontWeight: FontWeight.w800)),
         ],
       ),
     );
@@ -1383,7 +1389,7 @@ class AnalyticsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Regional Ecosystem Analytics')),
+      appBar: AppBar(title: const Text('Supply Chain Analytics')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -1404,12 +1410,13 @@ class AnalyticsTab extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                     const Text(
-                      'Biomass Supply Chain Analytics',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: _kTextDark),
+                      'Agri-Waste Supply Chain Intelligence',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800, color: _kTextDark),
                     ),
                     const SizedBox(height: 6),
                     const Text(
-                      'Data visualization module for carbon offsets, regional yield forecasts, and pricing indices.',
+                      'Analytics dashboard module for carbon offset credits, regional biomass yield forecasting, and transparent pricing indices.',
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 12, color: _kMuted, height: 1.4),
                     ),
@@ -1425,7 +1432,7 @@ class AnalyticsTab extends StatelessWidget {
 }
 
 // ─────────────────────────────────────────────────────────────
-// TAB 4: PROFILE (CORPORATE ACCOUNT & EMERALD LEDGER)
+// TAB 4: PROFILE (TEAM & PROJECT ACCOUNT MANAGEMENT)
 // ─────────────────────────────────────────────────────────────
 class ProfileTab extends StatelessWidget {
   const ProfileTab({super.key});
@@ -1434,7 +1441,7 @@ class ProfileTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Corporate Account Management'),
+        title: const Text('Agri Cycle Account Details'),
         actions: [
           IconButton(
             icon: const Icon(Icons.logout_rounded),
@@ -1448,25 +1455,25 @@ class ProfileTab extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // Corporate Account Header
+            // Account Header Card
             Card(
               child: Padding(
                 padding: const EdgeInsets.all(20),
                 child: Row(
                   children: [
                     CircleAvatar(
-                      radius: 32,
+                      radius: 30,
                       backgroundColor: _kPrimary.withOpacity(0.15),
-                      child: const Text('V', style: TextStyle(fontSize: 28, fontWeight: FontWeight.w800, color: _kPrimary)),
+                      child: const Text('V', style: TextStyle(fontSize: 26, fontWeight: FontWeight.w800, color: _kPrimary)),
                     ),
                     const SizedBox(width: 16),
                     const Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Vasavi SHG Hub', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: _kTextDark)),
+                          Text('Vasavi SHG Hub', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800, color: _kTextDark)),
                           SizedBox(height: 4),
-                          Text('Registered MSME Agri Node', style: TextStyle(fontSize: 12, color: _kMuted)),
+                          Text('Vasavi College of Engineering MSME Node', style: TextStyle(fontSize: 11, color: _kMuted)),
                         ],
                       ),
                     ),
@@ -1478,7 +1485,7 @@ class ProfileTab extends StatelessWidget {
 
             // Verification Check-Badges
             const Text(
-              'ACCOUNT VERIFICATION',
+              'PROJECT VERIFICATION',
               style: TextStyle(fontSize: 11, fontWeight: FontWeight.w800, color: _kMuted, letterSpacing: 1.2),
             ),
             const SizedBox(height: 12),
@@ -1486,14 +1493,14 @@ class ProfileTab extends StatelessWidget {
               children: const [
                 Expanded(child: _VerificationBadge(title: 'Aadhaar Verified', icon: Icons.verified_user_rounded)),
                 SizedBox(width: 12),
-                Expanded(child: _VerificationBadge(title: 'Bank Account Linked', icon: Icons.account_balance_rounded)),
+                Expanded(child: _VerificationBadge(title: 'Udyam Registered', icon: Icons.account_balance_rounded)),
               ],
             ),
             const SizedBox(height: 24),
 
-            // Emerald-Tinted Ledger Summary Box
+            // Emerald Ledger Summary Box
             const Text(
-              'FINANCIAL LEDGER SUMMARY',
+              'VALORIZATION FINANCIAL LEDGER',
               style: TextStyle(fontSize: 11, fontWeight: FontWeight.w800, color: _kMuted, letterSpacing: 1.2),
             ),
             const SizedBox(height: 12),
@@ -1520,7 +1527,7 @@ class ProfileTab extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: const [
-                      Text('Active Earnings Wallet', style: TextStyle(fontSize: 13, color: _kOnPrimary, fontWeight: FontWeight.w600)),
+                      Text('Farmer Micro-enterprise Ledger', style: TextStyle(fontSize: 13, color: _kOnPrimary, fontWeight: FontWeight.w600)),
                       Icon(Icons.account_balance_wallet_rounded, color: _kAmber, size: 22),
                     ],
                   ),
@@ -1535,9 +1542,9 @@ class ProfileTab extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Total Settled Payouts', style: TextStyle(fontSize: 11, color: Colors.white70)),
+                            Text('Settled Payouts', style: TextStyle(fontSize: 11, color: Colors.white70)),
                             SizedBox(height: 4),
-                            Text('₹ 2,42,000', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800, color: _kOnPrimary)),
+                            Text('₹ 2,42,000', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w800, color: _kOnPrimary)),
                           ],
                         ),
                       ),
@@ -1545,9 +1552,9 @@ class ProfileTab extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Pending Escrow Wallet', style: TextStyle(fontSize: 11, color: Colors.white70)),
+                            Text('Pending Escrow', style: TextStyle(fontSize: 11, color: Colors.white70)),
                             SizedBox(height: 4),
-                            Text('₹ 42,500', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800, color: _kAmber)),
+                            Text('₹ 42,500', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w800, color: _kAmber)),
                           ],
                         ),
                       ),
@@ -1575,7 +1582,7 @@ class _VerificationBadge extends StatelessWidget {
       color: _kEmeraldBg,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
-        side: const BorderSide(color: Color(0xFFA5D6A7)),
+        side: const BorderSide(color: Color(0xFF81C784)),
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
