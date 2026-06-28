@@ -865,14 +865,12 @@ class _BarVisualizer extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        FractionallySizedBox(
-          heightFactor: heightFactor,
-          child: Container(
-            width: 18,
-            decoration: BoxDecoration(
-              color: isHighlight ? _kPrimary : _kPrimary.withOpacity(0.25),
-              borderRadius: BorderRadius.circular(6),
-            ),
+        Container(
+          height: 50 * heightFactor,
+          width: 18,
+          decoration: BoxDecoration(
+            color: isHighlight ? _kPrimary : _kPrimary.withOpacity(0.25),
+            borderRadius: BorderRadius.circular(6),
           ),
         ),
         const SizedBox(height: 6),
